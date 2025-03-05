@@ -3,12 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/index.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>hello in the intro to backend</h1>
-    <h2>
-        <%= username %>
-    </h2>
+    <div class="container">
+        <p class="intro-tag">Welcome to</p>
+        <h1>Intro to Backend API</h1>
+        
+        <div class="info-card">
+            <p><strong>This CRUD app</strong> demonstrates basic backend operations using Node.js, Express, and Prisma.</p>
+            <p>You can see all the code in this GitHub repo: <a href="https://github.com/khatab1324/IntrobackendCourse" target="_blank">https://github.com/khatab1324/IntrobackendCourse</a></p>
+        </div>
+        <h2>User Data</h2>
+        <p><i>This is all the data we have in our API:</i></p>
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Mark</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.map(item=>{ %>
+                <tr>
+                    <td><%= item.username %></td>
+                    <td><%= item.mark %></td>
+                    <td><%= item.age || 'N/A' %></td>
+                    <td><%= item.email || 'N/A' %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        
+        <div class="api-instructions">
+            <h3>API Usage</h3>
+            <p>To create a new user, use POST with the following data:</p>
+            <div class="code-block">
+                {
+                  "id": "string (optional - UUID will be generated)",
+                  <br>
+                  "username": "string (required)",
+                  <br>
+                  "mark": number (required),
+                  <br>
+                  "age": number (optional),
+                  <br>
+                  "email": "string (optional, must be unique)"
+                }
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -7,7 +7,16 @@ const { PrismaClient } = require("@prisma/client")
 dotenv.config();
 app.use(urlencoded({ extended: true }))
 app.use(json())
+
+app.use(express.static("public"))
+app.set("view engine", "ejs")
+
 const prisma = new PrismaClient()
+
+app.get("/", async (req, res) => {
+    const data = await prisma.user.findMany()
+    res.render("home", { data })
+})
 
 app.get("/users", async (req, res) => {
     try {
